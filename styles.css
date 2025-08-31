@@ -56,8 +56,8 @@ body {
 }
 
 .card {
-  min-height: 60vh;
-  max-height: 60vh;
+  min-height: 65vh;
+  max-height: 65vh;
   width: 80%;
   min-width: 50vw;
   max-width: 50vw;
