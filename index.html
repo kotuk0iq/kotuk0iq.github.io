@@ -1,125 +1,467 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-	<title>KoTuK-Shop</title>
-	<link rel="stylesheet" href="styles.css">
-	<!--<script src="kotuk_ads.js"></script>-->
-	<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="x-frame-options" content="DENY">
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <title>KoTuK-Service</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/home_styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+    <script type="text/javascript">
+        var checkEnv=function(){try{return window.console&&window.console.log&&/^function.*native code/.test(String(window.console.log))||!1}catch(e){return!1}};
+    </script>
+<!-- <script src="scripts/script.js"></script>-->
 </head>
 
 <body>
-	<section id="start">
-	<img src="img/kotuk0iq.jpg" alt="kotuk0iq" style="width: 100%; display: block;">
-    <h2>Магазин от @kotuk0iq, покупайте лучшие товары по лучшим ценам</h2>
-    <!--Для удобства самого себя я тут добавил строку чтобу не путать картинку верхнюю и карточки-->
-	</section>
-		<nav>
-			<a href="https://t.me/+m0E-aBVwRNJmMzQy" class="display-button">Примеры работ</a>
-			<a href="#contacts" class="display-button">Контакты</a>
-			<a href="mailto:kotuk0iq@gmail.com?subject=Проблема&body=Здравствуйте, у меня случилось что-то" class="display-button">Техподдержка</a>
-		</nav>
-	<!--Карточка "О нас"-->
-	<section class="about-us">
-    <div class="container2">
-        <h2>О нас</h2>
+    <div class="container">
+        <header>
+            <h1>KoTuK-Service</h1>
+        </header>
 
-        <div class="about-info">
-            <div class="experience">
-                <div class="number">5</div>
-                <div class="label">лет опыта</div>
-            </div>
-
-            <div class="price">
-                <div class="number">от 10₽</div>
-                <div class="label">выгодная цена</div>
-            </div>
-        </div>
-
-        <div class="about-text">
-            <p>Мы — команда профессионалов, которая с 2020 года работает с Python, раньше мы были "Omsk GameLab", но сейчас перенесены в этот магазин</p>
-
-            <ul class="features">
-                <li><i class="icon">✓</i> Опыт работы сотрудников - от 4 лет</li>
-                <li><i class="icon">✓</i> Выполняем работу - быстро и качественно</li>
-                <li><i class="icon">✓</i> Цена - как чупа-чупс</li>
-				<li><i class="icon">✓</i> Поддержка 24/7</li>
+        <nav id="menu">
+            <ul>
+                <li>
+                    <a href="#" data-page="home">
+                        <img src="img/home-icon.png" alt="Главная" class="menu-icon" width="50vw">
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-page="files">
+                        <img src="img/files.png" alt="Файлы" class="menu-icon" width="50vw">
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-page="other">
+                        <img src="img/other.png" alt="Другое" class="menu-icon" width="50vw">
+                    </a>
+                </li>
+<!--                <li>-->
+<!--                    <a href="#" data-page="search">-->
+<!--                        <img src="img/profile.png" alt="Поиск" class="menu-icon" width="50vw">-->
+<!--                    </a>-->
+<!--                </li>-->
             </ul>
+        </nav>
+
+        <h1>Реклама</h1>
+        <div class="kotuk_ad"></div>
+
+        <h1>Контент</h1>
+        <main id="content">
+            <div w3-include-html="pages/home.html"></div>
+        </main>
+        <h1>Остальное</h1>
+        <div style="display:none;">
+            <script type="text/javascript">
+                try{if(window.debugger||window.__proto__){if(window.location.hostname!="localhost"){window.location.href="/error"}}}catch(e){}
+            </script>
         </div>
+
+
+        <div class="page-content">
+            <style>
+                /* Стили для профиля */
+                .profile-card {
+                    background: #787878;
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                    max-width: 400px;
+                    margin: 20px auto;
+                }
+
+                .profile-info {
+                    margin-top: 20px;
+                }
+
+                .profile-info p {
+                    margin: 8px 0;
+                }
+
+                .profile-info strong {
+                    font-weight: bold;
+                    color: #333;
+                }
+
+                /* Дополнительно можно добавить анимацию появления */
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+
+                .profile-card {
+                    animation: fadeIn 0.5s ease-in-out;
+                }
+
+                .auth-form {
+                    background: #787878;
+                    padding: 20px;
+                    border-radius: 8px;
+                    max-width: 400px;
+                    margin: 50px auto;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                }
+                .auth-form h2 {
+                    margin-bottom: 20px;
+                    text-align: center;
+                    color: #333;
+                }
+                .auth-form input {
+                    width: 100%;
+                    padding: 12px;
+                    margin: 10px 0;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                }
+                .auth-form button {
+                    background: #007bff;
+                    color: white;
+                    padding: 12px 20px;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    width: 100%;
+                }
+                .auth-form button:hover {
+                    background: #0056b3;
+                }
+                .auth-form .error {
+                    color: red;
+                    margin-top: 10px;
+                }
+            </style>
+            <h3>Профиль</h3>
+            <div class="auth_container">
+                <div class="auth-form">
+                    <h2>Авторизация</h2>
+                    <form id="authForm">
+                        <input type="text" name="username" placeholder="Логин" required>
+                        <input type="password" name="password" placeholder="Пароль" required>
+                        <button type="submit">Войти</button>
+                        <div class="error"></div>
+                    </form>
+                </div>
+            </div>
+            <div id="data"></div>
+
+            <div class="reg_container">
+                <div class="auth-form">
+                    <h2>Регистрация</h2>
+                    <form id="regForm">
+                        <input type="text" name="username" placeholder="Логин" required>
+                        <input type="password" name="password" placeholder="Пароль" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <button type="submit">Создать аккаунт</button>
+                        <div class="error"></div>
+                    </form>
+                </div>
+            </div>
+            <div id='create'></div>
+        </div>
+
+        <h1>Другие сервисы</h1>
+
+        <style>
+            /* Контейнер для формы перевода */
+            .transfer-container {
+                margin: 20px auto;
+                max-width: 400px;
+            }
+
+            /* Стили для формы перевода */
+            .transfer-form {
+                background: #787878;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                animation: fadeIn 0.5s ease-in-out;
+            }
+
+            .transfer-form h3 {
+                margin-bottom: 20px;
+                text-align: center;
+                color: #333;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                color: #333;
+            }
+
+            .profile-info input {
+                width: 100%;
+                padding: 12px;
+                margin: 10px 0;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            /* Стили для кнопки перевода */
+            .transfer-form button {
+                background: #007bff;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            .transfer-form button:hover {
+                background: #0056b3;
+            }
+
+            /* Стили для сообщений об ошибках */
+            .error-message {
+                color: red;
+                margin-top: 10px;
+                text-align: center;
+            }
+        </style>
+        <div class="transfer-container">
+            <div class="profile-card transfer-form">
+                <h3>Перевод средств</h3>
+                <form id="transferForm">
+                    <div class="profile-info form-group">
+                        <label>Логин получателя:</label>
+                        <input type="text" name="receiverUsername" placeholder="Введите логин получателя" required>
+                    </div>
+                    <div class="profile-info form-group">
+                        <label>Сумма перевода:</label>
+                        <input type="number" name="amount" placeholder="Введите сумму" min="1" required>
+                    </div>
+                    <button type="submit">Перевести</button>
+                    <div class="error-message"></div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            async function initTransferForm() {
+                const form = document.getElementById('transferForm');
+                if (!form) return;
+
+                const errorContainer = form.querySelector('.error-message');
+
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    errorContainer.textContent = ''; // Очищаем предыдущие ошибки
+
+                    try {
+                        const receiverUsername = form.querySelector('input[name="receiverUsername"]').value.trim();
+                        const amount = parseFloat(form.querySelector('input[name="amount"]').value);
+
+                        // Проверяем авторизацию
+                        if (userNameNow === '') {
+                            throw new Error('Вы не авторизованы');
+                        }
+
+                        // Валидация данных
+                        if (!receiverUsername || isNaN(amount) || amount <= 0) {
+                            throw new Error('Некорректные данные');
+                        }
+
+                        await transferMoney(userNameNow, receiverUsername, amount);
+                        alert('Перевод выполнен успешно!');
+                        form.reset();
+
+                    } catch (error) {
+                        errorContainer.textContent = `Ошибка: ${error.message}`;
+                    }
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                initTransferForm();
+            });
+        </script>
+
+
+
+        <div class="page-content">
+            <h3>Поиск KotukVerification</h3>
+            <form id="searchForm">
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Введите кого ищем...">
+                    <button type="submit" class="search-button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </form>
+            <div id="info" class="search-results"></div>
+        </div>
+
+<style>
+    .page-content {
+        max-width: 600px;
+        margin: 50px auto;
+    }
+
+    .search-container {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ccc;
+        border-radius: 25px;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+
+    .search-input:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        outline: none;
+    }
+
+    .search-button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 50px;
+        border: none;
+        background: #fff;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .search-button:hover {
+        background: #f2f2f2;
+    }
+
+    .search-button i {
+        font-size: 18px;
+    }
+
+    .search-results {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .search-results.loading {
+        background: #f9f9f9;
+    }
+
+    .search-results h4 {
+        margin-bottom: 15px;
+    }
+
+    .search-results p {
+        margin: 5px 0;
+    }
+
+    .error-message {
+        color: red;
+        font-style: italic;
+    }
+
+    .success-message {
+        color: green;
+        font-style: italic;
+    }
+</style>
+<script type="text/javascript">
+    if (window.top !== window.self) {
+        window.location.href = "/error";
+    }
+    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const form = document.getElementById('searchForm');
+        const res = document.getElementById('info');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const searchInput = document.getElementById('searchInput');
+            const searchQuery = searchInput.value.trim();
+
+            if (searchQuery) {
+                res.innerHTML = '<div class="loading">Поиск...</div>';
+
+                try {
+                    const result = await getUser(searchQuery);
+                    const result2 = await getDataByPath(`KotukPay/user/${searchQuery}/money`);
+                    if (result) {
+                        res.innerHTML = `
+                            <h4>Результаты поиска:</h4>
+                            <p>Пользователь: ${searchQuery}</p>
+                            <p>Информация: ${result}</p>
+                            <p>Баланс: ${result2 || 0}</p>
+                        `;
+                    } else {
+                        res.innerHTML = '<div class="error-message">Пользователь не найден</div>';
+                    }
+                    searchInput.value = '';
+                } catch (error) {
+                    console.error('Ошибка при получении данных:', error);
+                    res.innerHTML = '<div class="error-message">Произошла ошибка при поиске</div>';
+                }
+            } else {
+                alert('Пожалуйста, введите поисковый запрос');
+            }
+        });
+    });
+
+    async function getUser(username) {
+        try {
+            const data = await getDataByPath(`KotukPay/other/scam/${username}`);
+            return data || null;
+        } catch (error) {
+            console.error('Ошибка при получении данных:', error);
+            alert('Произошла ошибка при поиске');
+        }
+    }
+
+        async function getUser(username) {
+            try {
+                const data = await getDataByPath(`KotukPay/other/scam/${username}`);
+                return data || "No info";
+            } catch (error) {
+                console.error('Ошибка в getUser:', error);
+                throw error;
+            }
+        }
+
+        </script>
+        -------------------------------------------------------------
+        <div class="news">
+            <h3>Контакты</h3>
+            <p>- Email</p>
+            <p>- Telegram </p>
+            <p>- VK</p>
+            <button onclick="alert('EMAIL: kotuk0iq@gmail.com\nTG: @kotuk0iq\nVK: @kotuk0iq', '_blank')">Посмотреть</button>
+        </div>
+        <footer>
+            <p>© 2025, KoTuK-0iq</p>
+        </footer>
     </div>
-	</section>
 
-	<!--Реклама KotukAds-->
-	<div class="kotuk_ad"></div>
-	<!--Карточки с товарами-->
-	<section id="products">
-	<div class="container">
-<!--		<div class="card">-->
-<!--			<img src="java-code.jpg" alt="Разработка Java кода">-->
-<!--			<div class="card-body">-->
-<!--				<h3 class="card-title">Разработка Java кода</h3>-->
-<!--				<p>Разработаем код на Java по вашему описанию</p>-->
-<!--				<a href="https://www.donationalerts.com/r/kotuk_shop" class="buy-button"><b>Купить за 49р </b><s>99р</s></a>-->
-<!--			</div>-->
-<!--		</div>-->
+    <script src="scripts/script.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/kotuk_ads_inline.js"></script>
+    <script>
+    function p(){var e=["/scripts","/api/private","/admin"];var t=window.location.pathname;if(window.location.hostname!="localhost"){for(var n=0;n<e.length;n++)if(t.includes(e[n]))window.location.href="/error";if(t.includes(".js"))window.location.href="/error"}}function a(){try{document.oncontextmenu=function(){return!1};document.onkeydown=function(e){if(window.location.hostname!="localhost")return!(e.ctrlKey&&(e.shiftKey&&e.keyCode===73||e.keyCode===85||e.keyCode===89||e.keyCode===80||e.keyCode===83||e.keyCode===67||e.keyCode===84||e.keyCode===76||e.keyCode===78))};document.onkeydown=function(e){123===e.keyCode&&e.preventDefault()}}catch(e){}}function c(){try{if(window.console&&window.console.log){window.console.log=function(){};window.console.error=function(){}}window.alert=function(){};window.prompt=function(){}}catch(e){}}function e(e){return String(e).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}function t(){return Math.random().toString(36).substr(2,10)}document.addEventListener("DOMContentLoaded",function(){var e=t();localStorage.setItem("csrfToken",e);document.querySelectorAll("form").forEach(function(t){var n=document.createElement("input");n.type="hidden",n.name="csrfToken",n.value=e,t.appendChild(n)});p(),a(),c()});function n(e){console.error("Произошла ошибка"),alert("Произошла непредвиденная ошибка")}
+    </script>
 
-		<div class="card">
-			<img src="img/learning.jpg" alt="Обучение по Python (Middle)">
-			<div class="card-body">
-				<h3 class="card-title">Обучение по Python</h3>
-				<p>Обучение по Python - с нуля до Middle (40 уроков всего)</p>
-				<a href="https://t.me/kotuk0iq" class="buy-button"><b>4 урока/250₽</b> <s>359₽</s></a>
-				<a href="tokens/token.html?product=002&cost=250" class="buy-button">Получить токен</a>
-			</div>
-		</div>
-
-		<div class="card">
-			<img src="img/site-html.jpg" alt="Разработка простого сайта">
-			<div class="card-body">
-				<h3 class="card-title">Разработка простого сайта</h3>
-				<p>Разработаем простой сайт без бэкенда, но с возможностью использования JavaScript</p>
-				<a href="https://t.me/kotuk0iq" class="buy-button"><b>Договорная цена</b></a>
-				<a href="tokens/token.html?product=011&cost=Договорная" class="buy-button">Получить токен</a>
-			</div>
-		</div>
-
-		<div class="card">
-			<img src="img/py-code.jpg" alt="Разработка Python кода">
-			<div class="card-body">
-				<h3 class="card-title">Разработка Python кода</h3>
-				<p>Разработаем код на Python по вашему описанию или даже телеграм бота</p>
-				<a href="https://t.me/kotuk0iq" class="buy-button"><b>Договорная цена </b></a>
-				<a href="tokens/token.html?product=012&cost=Договорная" class="buy-button">Получить токен</a>
-			</div>
-		</div>
-
-	<div class="card">
-		<img src="img/vip.jpg" alt="VIP-Status">
-		<div class="card-body">
-			<h3 class="card-title">VIP Статус</h3>
-			<p>VIP Статус на моих каналах и в видео; <a href="https://telegra.ph/Preimushchestva-VIP-08-04">Подробности</a>
-      <b>Важно знать</b> что при покупке вы автоматически даете согласие на хранение ваших данных в базе данных
-      </p>
-			<a href="https://www.donationalerts.com/r/kotuk_shop" class="buy-button"><b>Купить за 99₽/Год </b><s>159₽</s></a>
-			<a href="tokens/token.html?product=013&cost=99" class="buy-button">Получить токен</a>
-		</div>
-	</div>
-	</div>
-	</section>
-
-	<section id="contacts">
-    <h2> _____________ </h2>
-	<h2> Конец товаров </h2>
-	<h2> _____________ </h2>
-    <h3> Контакты:    </h3>
-    <h4> Telegram: <a href="https://t.me/kotuk0iq">@kotuk0iq</a></h4>
-    <h4> Telegram-Bot: <a href="https://t.me/kotuk0iqBOT">@kotuk0iqBOT</a></h4>
-    <h4> Email: <a href="mailto:kotuk0iq@gmail.com?subject=Обращение на почту&body=Здравствуйте, я хочу купить товар 'товар'">kotuk0iq@gmail.com</a></h4>
-    <h4> VK: <a href="https://vk.com/kotuk0iq">@kotuk0iq</a></h4>
-	</section>
-	<a href="#start" class="display-button">ВВЕРХ  ⬆️</a>
-	<script src="kotuk_ads.js"></script>
 </body>
 </html>
