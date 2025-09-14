@@ -1,0 +1,9 @@
+[
+    {
+        "name": "CES-164",
+        "author": "KoTuK-0iq",
+        "desc": "Плагин шифрования на основе CES-164.\nОтлично подойдет для шифрования текста\nи важных данных!",
+        "scriptLink": "https://f1019455.xsph.ru/plugins/ces164.js",
+        "documentation": "encodeText(\"Text\"); - шифрование текста\ndecodeText(\"{зашифрованный_текст}\") - расшифровка текста"
+    }
+]
