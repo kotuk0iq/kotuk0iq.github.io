@@ -1,0 +1,110 @@
+<div class="page-content">
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: #222;
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            margin: 10px 0;
+        }
+
+        .card pre {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .card a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <div class="container">
+        <h1 style="color: #ff6b6b; text-align: center;">Каталог плагинов</h1>
+
+        <div id="plugins-container" class="card-container"></div>
+    </div>
+
+    <script>
+        function createPluginCard(plugin) {
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            card.innerHTML = `
+                <h2>${plugin.name}</h2>
+                <p><strong>Автор:</strong> ${plugin.author}</p>
+                <p><strong>Описание:</strong><br>${plugin.desc}</p>
+                <pre><strong>Документация:</strong><br>${plugin.documentation}</pre>
+                <p><strong>Подключить скрипт:</strong><br><code>&lt;script src="${plugin.scriptLink}"&gt;&lt;/script&gt;</code></p>
+            `;
+
+            return card;
+        }
+
+        async function loadPlugins() {
+            try {
+                // Исправленный путь к plugins.json
+                const response = await fetch('plugins/plugins.json');
+
+                if (!response.ok) {
+                    throw new Error(`Ошибка загрузки: ${response.status} - ${response.statusText}`);
+                }
+
+                const plugins = await response.json();
+
+                // Проверяем структуру каждого плагина
+                if (!Array.isArray(plugins) ||
+                    plugins.some(plugin =>
+                        !plugin.name ||
+                        !plugin.author ||
+                        !plugin.desc ||
+                        !plugin.documentation ||
+                        !plugin.scriptLink
+                    )) {
+                    throw new Error('Неверная структура данных в plugins.json');
+                }
+
+                const container = document.getElementById('plugins-container');
+                container.innerHTML = '';
+
+                plugins.forEach(plugin => {
+                    container.appendChild(createPluginCard(plugin));
+                });
+            } catch (error) {
+                console.error('Ошибка при загрузке плагинов:', error);
+                document.getElementById('plugins-container').innerHTML =
+                    '<p style="color: red;">Не удалось загрузить каталог плагинов</p>';
+            }
+        }
+
+        // Добавляем задержку, если страница загружается по клику
+        setTimeout(() => {
+            loadPlugins();
+        }, 100);
+    </script>
+</div>
