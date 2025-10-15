@@ -1,4 +1,66 @@
 <div class="page-content">
+    <style>
+        .b2 {
+            min-width: 10vw;
+            max-width: 10vw;
+            min-height: 5vh;
+            background-color: rgb(20, 200, 60);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: inline-block;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            line-height: normal;
+        }
+
+        .b2:hover {
+            background-color: rgb(20, 180, 50);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .b2:active {
+            background-color: rgb(20, 160, 40);
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .b2 {
+                min-width: 80%;
+                padding: 15px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .b2 {
+                min-width: 90%;
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+
     <h2>Файлы</h2>
-    <p>Тут будут файлы (SCLang, KotukWebServices, KotukCCServices и т.п.)</p>
+    <h3>* * *</h3>
+    <h3>KotukWebServices</h3>
+    <p>3 сервиса - InlineAd, FullscreenAd, KotukPay</p>
+
+    <a
+        class="b2"
+        href="files/HowInstall.txt"
+        download="HowInstall.txt"
+    >
+        Скачать
+    </a>
+    </script>
 </div>
