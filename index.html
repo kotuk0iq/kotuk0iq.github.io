@@ -493,107 +493,6 @@
         border-radius: 8px;
     }
 </style>
-
-<div class="page-content">
-    <h3>CES-164</h3>
-    <p>Cat Encode System - 164 symbols</p>
-    <form id="encodeForm">
-        <div class="encode-container">
-            <textarea id="inputText" placeholder="Введите текст..." rows="5" cols="50"></textarea>
-            <button type="submit" class="encode-button">
-                Обработать
-            </button>
-        </div>
-    </form>
-    <div id="result" class="result-container">
-        <textarea id="outputText" readonly rows="5" cols="50"></textarea>
-    </div>
-</div>
-
-<script>
-    const charMap = {
-    ' ': '_000', 'а': '_001', 'б': '_002', 'в': '_003', 'г': '_004', 'д': '_005',
-    'е': '_006', 'ё': '_007', 'ж': '_008', 'з': '_009', 'и': '_010', 'й': '_011',
-    'к': '_012', 'л': '_013', 'м': '_014', 'н': '_015', 'о': '_016', 'п': '_017',
-    'р': '_018', 'с': '_019', 'т': '_020', 'у': '_021', 'ф': '_022', 'х': '_023',
-    'ц': '_024', 'ч': '_025', 'ш': '_026', 'щ': '_027', 'ъ': '_028', 'ы': '_029',
-    'ь': '_030', 'э': '_031', 'ю': '_032', 'я': '_033',
-    'А': '_034', 'Б': '_035', 'В': '_036', 'Г': '_037', 'Д': '_038', 'Е': '_039',
-    'Ё': '_040', 'Ж': '_041', 'З': '_042', 'И': '_043', 'Й': '_044', 'К': '_045',
-    'Л': '_046', 'М': '_047', 'Н': '_048', 'О': '_049', 'П': '_050', 'Р': '_051',
-    'С': '_052', 'Т': '_053', 'У': '_054', 'Ф': '_055', 'Х': '_056', 'Ц': '_057',
-    'Ч': '_058', 'Ш': '_059', 'Щ': '_060', 'Ъ': '_061', 'Ы': '_062', 'Ь': '_063',
-    'Э': '_064', 'Ю': '_065', 'Я': '_066',
-    'A': '_067', 'B': '_068', 'C': '_069', 'D': '_070', 'E': '_071', 'F': '_072',
-    'G': '_073', 'H': '_074', 'I': '_075', 'J': '_076', 'K': '_077', 'L': '_078',
-    'M': '_079', 'N': '_080', 'O': '_081', 'P': '_082', 'Q': '_083', 'R': '_084',
-    'S': '_085', 'T': '_086', 'U': '_087', 'V': '_088', 'W': '_089', 'X': '_090',
-    'Y': '_091', 'Z': '_092',
-    'a': '_093', 'b': '_094', 'c': '_095', 'd': '_096', 'e': '_097', 'f': '_098',
-    'g': '_099', 'h': '_100', 'i': '_101', 'j': '_102', 'k': '_103', 'l': '_104',
-    'm': '_105', 'n': '_106', 'o': '_107', 'p': '_108', 'q': '_109', 'r': '_110',
-    's': '_111', 't': '_112', 'u': '_113', 'v': '_114', 'w': '_115', 'x': '_116',
-    'y': '_117', 'z': '_118',
-    '0': '_119', '1': '_120', '2': '_121', '3': '_122', '4': '_123',
-    '5': '_124', '6': '_125', '7': '_126', '8': '_127', '9': '_128',
-    ',': '_129', '.': '_130',
-    '~': '_131', '!': '_132', '?': '_133', '=': '_134', '-': '_135',
-    '+': '_136', ':': '_137', '%': '_138', '&': '_139', '*': '_140',
-    '(': '_141', ')': '_142', '@': '_143', '`': '_144', '$': '_145',
-    ';': '_146', '"': '_147', "'": '_148', '{': '_149', '}':'_150',
-    '\\':'_151', '\n':'_152', '\r':'_153', '#':'_154', '/':'_155',
-    '[':'_156', ']':'_157', '|':'_158', '$':'_159', '<':'_160',
-    '>':'_161', '\t':'_162', '_':'_163', '—':'_164'
-}
-
-function encodeText(text) {
-    let result = '';
-    for (let char of text) {
-        result += charMap[char] || char;
-    }
-    return result;
-}
-
-function decodeText(encodedText) {
-    const reverseMap = {};
-    for (let key in charMap) {
-        reverseMap[charMap[key]] = key;
-    }
-
-    let result = '';
-    let currentCode = '';
-
-    for (let char of encodedText) {
-        currentCode += char;
-        if (reverseMap[currentCode]) {
-            result += reverseMap[currentCode];
-            currentCode = '';
-        }
-    }
-    return result;
-}
-
-function processText(input) {
-    if (input.startsWith('enc: ')) {
-        return encodeText(input.slice(5));
-    } else if (input.startsWith('dec: ')) {
-        return decodeText(input.slice(5));
-    } else {
-        return 'Неверный формат ввода. Используйте "enc: текст" или "dec: код"';
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const inputField = document.getElementById('inputText');
-    const outputField = document.getElementById('outputText');
-
-    document.getElementById('encodeForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const input = inputField.value.trim();
-        outputField.value = processText(input);
-    });
-});
-</script>
         -------------------------------------------------------------
         <div class="news">
             <h3>Контакты</h3>
@@ -610,6 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <script src="scripts/script.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/kotuk_ads_inline.js"></script>
+    <script src="scripts/installer.js"></script>
 <!--    <script>-->
 <!--    function p(){var e=["/scripts","/api/private","/admin"];var t=window.location.pathname;if(window.location.hostname!="localhost"){for(var n=0;n<e.length;n++)if(t.includes(e[n]))window.location.href="/error";if(t.includes(".js"))window.location.href="/error"}}-->
 <!--    function a(){try{document.oncontextmenu=function(){return!1};document.onkeydown=function(e){if(window.location.hostname!="localhost")return!(e.ctrlKey&&(e.shiftKey&&e.keyCode===73||e.keyCode===85||e.keyCode===89||e.keyCode===80||e.keyCode===83||e.keyCode===67||e.keyCode===84||e.keyCode===76||e.keyCode===78))};document.onkeydown=function(e){123===e.keyCode&&e.preventDefault()}}catch(e){}}function c(){try{if(window.console&&window.console.log){window.console.log=function(){};window.console.error=function(){}}window.alert=function(){};window.prompt=function(){}}catch(e){}}function e(e){return String(e).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}function t(){return Math.random().toString(36).substr(2,10)}document.addEventListener("DOMContentLoaded",function(){var e=t();localStorage.setItem("csrfToken",e);document.querySelectorAll("form").forEach(function(t){var n=document.createElement("input");n.type="hidden",n.name="csrfToken",n.value=e,t.appendChild(n)});p(),a(),c()});function n(e){console.error("Произошла ошибка"),alert("Произошла непредвиденная ошибка")}-->
