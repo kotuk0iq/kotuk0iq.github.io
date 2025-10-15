@@ -1,0 +1,48 @@
+RU | Инструкция:
+
+1. Для InlineAd:
+Пример HTML кода:
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://www.gstatic.com/firebasejs/latest/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/latest/firebase-database.js"></script>
+    </head>
+    <body>
+        <div class="kotuk_ad"></div>
+        <script src="http://f1019455.xsph.ru/kservice/kotuk_ads_inline.js"></script>
+        <script>login = "Ваш логин"</script>
+    </body>
+</html>
+
+2. Для FullscreenAd
+Пример HTML кода:
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://www.gstatic.com/firebasejs/latest/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/latest/firebase-database.js"></script>
+</head>
+<body>
+    <button onclick="viewAd()">Показать рекламу</button>
+    <script>login = "Ваш логин"</script>
+    <script src="http://f1019455.xsph.ru/kservice/kotuk_ads_fullscreen.js"></script>
+</body>
+</html>
+
+3. Для KotukPay
+Пример HTML кода:
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://www.gstatic.com/firebasejs/latest/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/latest/firebase-database.js"></script>
+</head>
+<body>
+    <script>
+        ylogin = "Ваш логин"
+        createPayForm()
+    </script>
+    <script src="http://f1019455.xsph.ru/kservice/kotuk_pay.js></script>
+</body>
+</html>
